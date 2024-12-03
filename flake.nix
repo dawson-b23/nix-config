@@ -28,16 +28,23 @@
       url = "github:recyclarr/config-templates";
       flake = false;
     };
-    secrets = {
-    };
+    # secrets = {
+    # };
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs }: {
-
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
-  };
+  outputs = { self, nixpkgs, ...  } @ inputs: 
+    let 
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+	  modules = [
+	  ./machines/laptop/configuration.nix
+	  inputs.home-manager.nixosModules.default
+        ];
+      };
+    };
 }
