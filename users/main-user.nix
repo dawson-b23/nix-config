@@ -12,7 +12,7 @@ in
   options.main-user = {
     enable = lib.mkEnableOption "enable user module";
 
-    userName = lib.mKOption {
+    userName = lib.mkOption {
       default = "mainUser";
       description = ''
         username

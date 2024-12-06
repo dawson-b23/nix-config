@@ -8,15 +8,18 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../../users/main-user.nix
+      ../../users/main-user.nix
       inputs.home-manager.nixosModules.default
     ];
+
+  main-user.enable = true;
+  main-user.userName = "dawsonb";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "burger-laptop"; # Define your hostname.
+  networking.hostName = "nixos-laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -63,6 +66,12 @@
     neovim
   ];
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs;};
+    users = {
+      "dawsonb" = import ./home.nix;
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

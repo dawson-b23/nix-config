@@ -20,10 +20,6 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     recyclarr-configs = {
       url = "github:recyclarr/config-templates";
       flake = false;
@@ -39,12 +35,21 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-	  modules = [
-	  ./machines/laptop/configuration.nix
-	  inputs.home-manager.nixosModules.default
-        ];
+      nixosConfigurations = { 
+        laptop = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs;};
+	    modules = [
+	    ./machines/laptop/configuration.nix
+	    inputs.home-manager.nixosModules.default
+          ];
+        };
+	server = nixpkgs.lib.nixosSystem { 
+          specialArgs = {inherit inputs;};
+	    modules = [
+	    #./machines/server/configuration.nix
+	    #inputs.home-manager.nixosModules.default
+          ];
       };
     };
+  };
 }
