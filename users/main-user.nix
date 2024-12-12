@@ -22,8 +22,7 @@ in
 
   config = lib.mkIf config.main-user.enable {
     users.users.${config.main-user.userName} = {
-      initialPassword = "asdfghjkl;'";
-      #initialHashedPassword = "$y$j9T$Q8uP2pfps2jSRCQb9mDV60$LiAOypGC2n09GGxQpgSZBZxgcJFuiPeUvS8WEtmfH06";
+      initialHashedPassword = "$y$j9T$QCwLqJ495qLs0og8Ow3bF1$e2xb5elCzAmFdDsImpxi4RbXyZ3SX.4p9ZU82.kSaC6";
       isNormalUser = true;
       description = "main user";
       extraGroups = [
