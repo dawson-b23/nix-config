@@ -1,0 +1,8 @@
+{
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./kanata.nix
+  ];
+}

@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }:
 {
   imports = [
-    ./home-manager/cli/zsh.nix    
+    ./home-manager/cli    
+    ./home-manager/desktop
   ];
 }
