@@ -1,25 +1,23 @@
 # derivation for comic-code font installation
-{ pkgs }:
+{ stdenvNoCC,
+  lib,
+  pkgs,
+}:
 
-pkgs.stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   pname = "comic-code";
-  version = "1";
+  version = "1.0";
 
-  src = ../source/fonts/ComicCode.zip;
-
-  unpackPhase = ''
-    runHook preUnpack
-    ${pkgs.unzip}/bin/unzip $src
-
-    runHook postUnpack
-  '';
+  src = ../source/fonts/ComicCodeFont;
 
   installPhase = ''
-    runHook preInstall
-
-    install -Dm644 comic-code/*.otf -t $out/share/fonts/truetype
-
-    runHook postInstall
+    mkdir -p $out/share/fonts/truetype/
+    if [ -d "$src" ]; then
+      cp -r $src/*.{ttf,otf} $out/share/fonts/truetype/
+    else
+      echo "No fonts found in $src"
+      exit 0
+    fi
   '';
 }
 
