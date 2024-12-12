@@ -17,7 +17,7 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    install -Dm644 berkeley-mono-patched/*.otf -t $out/share/fonts/truetype
+    install -Dm644 comic-code/*.otf -t $out/share/fonts/truetype
 
     runHook postInstall
   '';

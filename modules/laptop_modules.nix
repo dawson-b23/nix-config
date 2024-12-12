@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 {
   imports = [
-    ./home-manager/cli    
-    ./home-manager/desktop
+    ./home-manager/cli/default.nix
+    ./home-manager/desktop/default.nix
   ];
 }

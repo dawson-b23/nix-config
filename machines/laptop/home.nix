@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
     ../../modules/laptop_modules.nix
+    inputs.nix-colors.homeManagerModules.default
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -80,10 +81,19 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+    colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
+
   programs.git = {
     enable = true;
     userName = "dawson-b23";
     userEmail = "dawsonhburgess@gmail.com";
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    enableFishIntegration = false;
+    options = [ "--cmd cd" ];
   };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
