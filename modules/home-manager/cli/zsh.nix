@@ -39,6 +39,10 @@
           "lt"="eza -a --icons=auto --tree -I \".git\" "; # list tree
           "l"="eza -1a --icons=auto --sort=name --group-directories-first"; # short list
         };
+        
+        initExtra = ''
+	  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/omp_config.toml)"
+        '';
       };
     
 }

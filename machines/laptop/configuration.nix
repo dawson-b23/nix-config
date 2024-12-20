@@ -71,6 +71,7 @@ in
     gh
     vim 
     unzip
+    oh-my-posh
   ];
 
   home-manager = {

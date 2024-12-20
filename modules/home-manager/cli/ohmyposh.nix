@@ -1,15 +1,6 @@
-{ 
-  config,
-  pkgs, 
-  lib,
-  ... 
-}:
+{ config, pkgs, ... }:
+
 {
-  programs.oh-my-posh = {
-    enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = false;
-  };
   home.file.".config/ohmyposh/omp_config.toml".text = ''
     console_title_template = '{{ .Shell }} in {{ .Folder }}'
     version = 3
@@ -179,6 +170,4 @@
       	  cache_duration = 'none'
       	  threshold = 500
   '';  
-
 }
-
