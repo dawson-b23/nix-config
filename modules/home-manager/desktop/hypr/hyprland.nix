@@ -140,7 +140,7 @@
 
         bind = [
 	  # programs
-          "$mainMod, T, exec, kitty -c 'fastfetch'"
+          "$mainMod, T, exec, kitty"
           "$mainMod, Q, killactive"
 	  "$mainMod SHIFT, L, exec, hyprlock"
 	  "$mainMod, E, exec, pcmanfm"
